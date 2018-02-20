@@ -10,34 +10,31 @@ import java.util.TreeSet;
 public class pi {
 
     public static void main(String[] args) {
-        Set<String> st = new TreeSet<>();
+        ArrayList<String> st = new ArrayList<>();
+        ArrayList<Integer> pi = new ArrayList<>();
+
         Path path = Paths.get("./pi.txt");
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             reader.readLine();
             reader.readLine();
             int a;
             while ((a = Character.getNumericValue((char) reader.read())) != -1) {
-               if (a == 0){
-                   a = Character.getNumericValue((char) reader.read());
-                   if (a!=0) {
-                       StringBuilder s = new StringBuilder();
-                       s.append(0);
-                       s.append(a);
-                       for (int i = 0; i < 8; i++) {
-                           s.append(Character.getNumericValue((char) reader.read()));
-                       }
-                       //System.out.println(s.toString());
-                       st.add(s.toString());
-                   }
-               }
+                pi.add(a);
             }
-            System.out.println(a);
         } catch (IOException ex) {
             ex.printStackTrace(); //handle an exception here
         }
+        System.out.println(pi.size());
+        for(int i = 0;i<pi.size();i++){
+            if (pi.get(i)== 0 && pi.get(i+1)!=0){
+                StringBuilder s = new StringBuilder();
+                for(int j=i;j<i+10;j++){
+                    s.append(pi.get(j));
+                }
+                st.add(s.toString());
+            }
+        }
         System.out.println(st.size());
-        Iterator itr = st.iterator();
-        System.out.println(itr.next());
-
+        System.out.println(st.get(0));
     }
 }
