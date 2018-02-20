@@ -6,22 +6,26 @@ import java.util.*;
 
 public class Pi {
 
-    ArrayList<String> st = new ArrayList<>();
+    Set<String> st = new TreeSet<>();
     ArrayList<Integer> pi = new ArrayList<>();
 
     public Pi(String file) {
         Path path = Paths.get(file);
+        System.out.print("Openning file...");
         try (BufferedReader reader = Files.newBufferedReader(path)) {
+            System.out.println("Done !");
             reader.readLine();
             reader.readLine();
+            System.out.print("Reading Pi...");
             int a;
             while ((a = Character.getNumericValue((char) reader.read())) != -1) {
                 pi.add(a);
             }
+            System.out.println("Done !");
         } catch (IOException ex) {
             ex.printStackTrace(); //handle an exception here
         }
-
+        System.out.print("Finding Phone Number...");
         for (int i = 0; i < pi.size(); i++) {
             if (pi.get(i) == 0 && pi.get(i + 1) != 0) {
                 StringBuilder s = new StringBuilder();
@@ -31,6 +35,8 @@ public class Pi {
                 st.add(s.toString());
             }
         }
+        System.out.println("Done !");
+        System.out.println(st.size() + " numbers found");
 
     }
 
@@ -41,7 +47,7 @@ public class Pi {
 
     public static void main(String[] args) {
         System.out.println("Creating index...");
-        Pi p = new Pi("pi.txt");
+        Pi p = new Pi("pi2.txt");
 
         Scanner sc = new Scanner(System.in);
         String line;
