@@ -12,7 +12,7 @@ public class Pi {
     public Pi(String file) {
         Path path = Paths.get(file);
 
-        long debut = System.currentTimeMillis();
+        long debut;
         long fin;
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             reader.readLine();
