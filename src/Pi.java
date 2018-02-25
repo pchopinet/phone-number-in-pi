@@ -6,25 +6,31 @@ import java.util.*;
 
 public class Pi {
 
-    Set<String> st = new TreeSet<>();
+    Set<String> numbers = new TreeSet<>();
     ArrayList<Integer> pi = new ArrayList<>();
 
     public Pi(String file) {
         Path path = Paths.get(file);
-        System.out.print("Openning file...");
+
+        long debut = System.currentTimeMillis();
+        long fin;
         try (BufferedReader reader = Files.newBufferedReader(path)) {
-            System.out.println("Done !");
             reader.readLine();
             reader.readLine();
+
+            debut = System.currentTimeMillis();
             System.out.print("Reading Pi...");
             int a;
             while ((a = Character.getNumericValue((char) reader.read())) != -1) {
                 pi.add(a);
             }
-            System.out.println("Done !");
+            fin = System.currentTimeMillis();
+            System.out.println("Done ! " + (fin - debut) / 1000 + "sec");
         } catch (IOException ex) {
             ex.printStackTrace(); //handle an exception here
         }
+
+        debut = System.currentTimeMillis();
         System.out.print("Finding Phone Number...");
         for (int i = 0; i < pi.size(); i++) {
             if (pi.get(i) == 0 && pi.get(i + 1) != 0) {
@@ -32,22 +38,23 @@ public class Pi {
                 for (int j = i; j < i + 10; j++) {
                     s.append(pi.get(j));
                 }
-                st.add(s.toString());
+                numbers.add(s.toString());
             }
         }
-        System.out.println("Done !");
-        System.out.println(st.size() + " numbers found");
+        pi.clear();
+        fin = System.currentTimeMillis();
+        System.out.println("Done ! " + (fin - debut) / 1000 + "sec");
+        System.out.println(numbers.size() + " numbers found");
 
     }
 
     public boolean check_number(String number) {
-        return st.contains(number);
+        return numbers.contains(number);
     }
 
 
     public static void main(String[] args) {
-        System.out.println("Creating index...");
-        Pi p = new Pi("pi2.txt");
+        Pi p = new Pi("pi.txt");
 
         Scanner sc = new Scanner(System.in);
         String line;
