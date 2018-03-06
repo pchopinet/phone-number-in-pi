@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Pi {
 
-    Set<String> numbers = new TreeSet<>();
+    Set<Long> numbers = new TreeSet<>();
     ArrayList<Integer> pi = new ArrayList<>();
 
     public Pi(String file) {
@@ -38,7 +38,7 @@ public class Pi {
                 for (int j = i; j < i + 10; j++) {
                     s.append(pi.get(j));
                 }
-                numbers.add(s.toString());
+                numbers.add(Long.parseLong(s.toString()));
             }
         }
         pi.clear();
@@ -48,13 +48,13 @@ public class Pi {
 
     }
 
-    public boolean check_number(String number) {
+    public boolean check_number(Long number) {
         return numbers.contains(number);
     }
 
 
     public static void main(String[] args) {
-        Pi p = new Pi("pi.txt");
+        Pi p = new Pi("pi2.txt");
 
         Scanner sc = new Scanner(System.in);
         String line;
@@ -62,7 +62,7 @@ public class Pi {
             System.out.println("Enter a number");
             line = sc.nextLine();
             if (line.length() == 10 && line.charAt(0) == '0') {
-                System.out.println(p.check_number(line));
+                System.out.println(p.check_number(Long.parseLong(line)));
             } else {
                 System.out.println("Not a phone number");
             }
