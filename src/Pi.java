@@ -6,22 +6,24 @@ import java.util.*;
 
 public class Pi {
 
-    Set<Long> numbers = new TreeSet<>();
-    ArrayList<Integer> pi = new ArrayList<>();
+    private Set<Integer> numbers = new TreeSet<>();
 
     public Pi(String file) {
         Path path = Paths.get(file);
 
         long debut;
         long fin;
+
+        ArrayList<Byte> pi = new ArrayList<>();
+
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             reader.readLine();
             reader.readLine();
 
             debut = System.currentTimeMillis();
             System.out.print("Reading Pi...");
-            int a;
-            while ((a = Character.getNumericValue((char) reader.read())) != -1) {
+            byte a;
+            while ((a = (byte) Character.getNumericValue((char) reader.read())) != -1) {
                 pi.add(a);
             }
             fin = System.currentTimeMillis();
@@ -38,7 +40,7 @@ public class Pi {
                 for (int j = i; j < i + 10; j++) {
                     s.append(pi.get(j));
                 }
-                numbers.add(Long.parseLong(s.toString()));
+                numbers.add(Integer.parseInt(s.toString()));
             }
         }
         pi.clear();
@@ -54,7 +56,7 @@ public class Pi {
 
 
     public static void main(String[] args) {
-        Pi p = new Pi("pi2.txt");
+        Pi p = new Pi("pi.txt");
 
         Scanner sc = new Scanner(System.in);
         String line;
