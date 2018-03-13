@@ -173,3 +173,4 @@ out/production/*
 cmake-build-release/
 .idea/workspace.xml
 
+bin/*
