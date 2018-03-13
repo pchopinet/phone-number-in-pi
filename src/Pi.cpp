@@ -42,12 +42,20 @@ Pi::Pi(std::string filename) {
 }
 
 bool Pi::check_number(unsigned long number) {
-    return false;
+    return this->numbers.find(number) != this->numbers.end();
 }
 
 int main(){
     Pi p = Pi("../pi.txt");
+    unsigned long t;
+    do {
+        std::cout << "Enter a number" << std::endl;
+        scanf("%lu",&t);
+        std::cout << t << std::endl;
+        std::cout << p.check_number(t) << std::endl;
+    }while (t>=0);
 
+    
 }
 
 
