@@ -50,7 +50,7 @@ public class Pi {
 
     }
 
-    public boolean check_number(Long number) {
+    public boolean check_number(Integer number) {
         return numbers.contains(number);
     }
 
