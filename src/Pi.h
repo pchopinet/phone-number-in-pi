@@ -20,6 +20,7 @@ public:
     Pi(std::string);
     bool check_number(unsigned long number);
 
+    const std::set<unsigned long> &getNumbers() const;
 };
 
 

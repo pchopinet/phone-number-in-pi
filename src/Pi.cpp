@@ -3,21 +3,22 @@
 //
 
 #include <cstdlib>
+#include <fstream>
 #include "Pi.h"
 
 Pi::Pi(std::string filename) {
 
     std::vector<char> pi = std::vector<char>();
 
-    FILE * file = fopen(filename.c_str(),"r");
-
+    std::ifstream file(filename);
     std::cout << "Reading Pi..." << std::endl;
 
     char c;
-    fscanf(file,"%c",&c);
-    fscanf(file,"%c",&c);
-    while(!feof(file) ){
-        fscanf(file,"%c",&c);
+    file >> c;
+    file >> c;
+
+    while(!file.eof()){
+        file >> c;
         pi.push_back(c);
     }
     std::cout << "Done ! " << std::endl;
@@ -45,17 +46,27 @@ bool Pi::check_number(unsigned long number) {
     return this->numbers.find(number) != this->numbers.end();
 }
 
+const std::set<unsigned long> &Pi::getNumbers() const {
+    return numbers;
+}
+
 int main(){
-    Pi p = Pi("../pi.txt");
+    Pi p = Pi("../Pi - Dec - Chudnovsky.txt");
     unsigned long t;
     do {
         std::cout << "Enter a number" << std::endl;
         scanf("%lu",&t);
-        std::cout << t << std::endl;
         std::cout << p.check_number(t) << std::endl;
-    }while (t>=0);
+    }while (t>0);
 
-    
+    std::set<unsigned long> numbers = p.getNumbers();
+    std::set<unsigned long>::iterator it;
+
+    for(it = numbers.begin(); it!=numbers.end(); ++it)
+    {
+        std::cout << *it << std::endl;    //On accède à l'élément pointé via l'étoile
+    }
+
 }
 
 
