@@ -17,7 +17,7 @@ private:
     std::set<unsigned long> numbers;
 
 public:
-    Pi(std::string);
+    Pi(std::string filename, unsigned long long nbDecimal);
     bool check_number(unsigned long number);
 
     const std::set<unsigned long> &getNumbers() const;
