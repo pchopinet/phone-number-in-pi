@@ -55,22 +55,13 @@ const std::set<unsigned long> &Pi::getNumbers() const {
 
 
 int main(){
-    Pi p = Pi("../pi-500m.txt", 100000000);
+    Pi p = Pi("../Pi_1B.txt", 1000000000);
     unsigned long t;
     do {
         std::cout << "Enter a number" << std::endl;
         scanf("%lu",&t);
         std::cout << p.check_number(t) << std::endl;
     }while (t>0);
-
-    std::set<unsigned long> numbers = p.getNumbers();
-    std::set<unsigned long>::iterator it;
-
-    for(it = numbers.begin(); it!=numbers.end(); ++it)
-    {
-        std::cout << *it << std::endl;    //On accède à l'élément pointé via l'étoile
-    }
-
 }
 
 
