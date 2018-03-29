@@ -57,14 +57,14 @@ const std::set<unsigned long> &Pi::getNumbers() const {
 
 int main(int argc, char ** argv){
     char *ch = static_cast<char *>(malloc(sizeof(char)));
-    unsigned long temp = std::strtoul(argv[1], &ch, 10);
-    Pi p = Pi("../Pi_4B.txt", temp);
+    unsigned long temp = std::strtoul(argv[2], &ch, 10);
+    Pi p = Pi(std::string(argv[1]), temp);
     unsigned long t;
-    /*do {
+    do {
         std::cout << "Enter a number" << std::endl;
         scanf("%lu",&t);
         std::cout << p.check_number(t) << std::endl;
-    }while (t>0);*/
+    }while (t>0);
 }
 
 
